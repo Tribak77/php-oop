@@ -5,7 +5,7 @@ class Voiture {
     public $couleur;
 
     public function demarrer() {
-        echo "La " . $this->couleur . " voiture démarre.";
+        echo "La voiture démarre.";
     }
 }
 
