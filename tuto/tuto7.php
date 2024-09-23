@@ -1,36 +1,86 @@
 <?php
 
-class Livre {
-    public $titre;
-    public $isbn;
-    public $auteurs; 
-}
+class Book{
+    private $title;
+    private $author;
+    private $year;
 
-class Auteur {
-    public $nom;
-    public $prenom;
+    public function __construct($title, Author $author, $year){
+        $this->title = $title;
+        $this->author = $author;
+        $this->year = $year;
+    }
 
-    public function __construct($nom = "", $prenom = "") {
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+    public function getTitle(){
+        return $this->title;
+    }
+
+    public function setTitle($title){
+        $this->title = $title;
+    }
+
+    public function getAuthor(){
+        return $this->author;
+    }
+
+    public function setAuthor(Author $author){
+        $this->author = $author;
+    }
+
+    public function getYear(){
+        return $this->year;
+    }
+
+    public function setYear($year){
+        $this->year = $year;
     }
 }
 
-$livre1 = new Livre();
-$livre1->titre = "Le Petit Prince";
-$livre1->isbn = "9782266000016";
-$livre1->auteurs = [
-    new Auteur("Saint-Exupery", "Antoine de")
-];
+class Author{
+    private $name;
+    private $birthYear;
 
-function enregistrerLivreDansFichier(Livre $livre, string $fichier) {
-    $json = json_encode($livre, JSON_PRETTY_PRINT);
-    file_put_contents($fichier, $json);
+    public function __construct($name, $birthYear){
+        $this->name = $name;
+        $this->birthYear = $birthYear;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function getBirthYear(){
+        return $this->birthYear;
+    }
+
+    public function setBirthYear($birthYear){
+        $this->birthYear = $birthYear;
+    }
 }
 
-function lireLivreDepuisFichier(string $fichier) : Livre {
-    $json = file_get_contents($fichier);
-    return json_decode($json);
+function save_data_into_file(Book $book, string $file){
+    $serializedData = serialize($book);
+    file_put_contents($file ,$serializedData);
 }
 
+function read_data_from_file(string $file){
+    $serializedData = file_get_contents($file);
+    return unserialize($serializedData);
+}
+
+$author = new Author("j.k",1960);
+$book = new Book("harry poter", $author,1997);
+
+$file = "book_data.txt";
+save_data_into_file($book, $file);
+
+$read_book = read_data_from_file($file);
+
+echo "Title: ". $read_book->getTitle(). "\n";
+echo "Author: ". $read_book->getAuthor()->getName(). "\n";
+echo "Year: ". $read_book->getYear();
 ?>
