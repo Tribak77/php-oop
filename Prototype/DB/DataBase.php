@@ -1,7 +1,7 @@
 <?php
 
 class DataBase{
-    public $books=[];
+    public $Books=[];
 
     public function __construct()
     {
@@ -9,16 +9,17 @@ class DataBase{
     }
 
     private function getData(){
-        $filePath = 'DB/Books.txt';
+        $filePath = '../DB/Books.txt';
         if(file_exists($filePath)){
             $content = file_get_contents($filePath);
             $data = unserialize($content);
-            $this->books = $data->books;
-        }
+            $this->Books = $data->Books;
+
+        }  
     }
 
     private function setData(){
-        $filePath = 'DB/Books.txt';
+        $filePath = '../DB/Books.txt';
         $data = serialize($this);
         file_put_contents($filePath,$data);
     }

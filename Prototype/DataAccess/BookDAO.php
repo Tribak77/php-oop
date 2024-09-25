@@ -5,20 +5,20 @@
 // the logic for reading and writing book data, 
 // separating it from the actual data storage mechanism.
 
-require 'DB/DataBase.php';
+require '../DB/DataBase.php';
 
 class BookDAO
 {
     public function getBooks()
     {
         $DataBase = new DataBase();
-        return $DataBase->books;
+        return $DataBase->Books;
     }
 
     public function addBooks($book)
     {
         $DataBase = new DataBase();
-        $DataBase->books = $book;
+        $DataBase->Books[] = $book;
         $DataBase->saveData();
     }
 }

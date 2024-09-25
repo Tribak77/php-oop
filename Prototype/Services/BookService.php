@@ -1,13 +1,13 @@
 <?php
 
-require 'DataAccess/BookDAO.php';
+require '../DataAccess/BookDAO.php';
 
 class BookService
 {
     public function getBooks()
     {
-        $DataBase = new BookDAO();
-        return $DataBase->getBooks();
+        $bookDAO = new BookDAO();
+        return $bookDAO->getBooks();
     }
 
     public function addBooks($book)

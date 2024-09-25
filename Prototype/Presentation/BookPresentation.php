@@ -1,7 +1,7 @@
 <?php 
 
-require 'Entites/Book.php';
-require 'Services/BookService.php';
+require '../Entites/Book.php';
+require '../Services/BookService.php';
 
 class BookPresentation{
 
@@ -13,10 +13,10 @@ class BookPresentation{
             echo "=========================\n";
             echo "Book list: \n";
 
-            foreach($Books as $Book){
+            foreach($Books as $book){
                 echo "__________________________\n";
-                echo "Title: " . $Book->getTitle() . "\n";
-                echo "ISBD: " . $Book->getISBD() . "\n";
+                echo "Title: " . $book->getTitle() . "\n";
+                echo "ISBD: " . $book->getISBD() . "\n";
             }
             echo "__________________________\n";
         } else{
