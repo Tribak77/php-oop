@@ -2,6 +2,7 @@
 
 class DataBase{
     public $books = [];
+    public $authors = [];
 
     public function __construct()
     {
@@ -14,6 +15,7 @@ class DataBase{
             $centent = file_get_contents($FilePath);
             $data = unserialize($centent);
             $this->books = $data->books;
+            $this->authors = $data->authors;
         }
     }
 
